@@ -4,9 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -g -std=c99 `sdl2-config --cflags`
 LDFLAGS = `sdl2-config --libs`
 
 TARGET = chip8_emulator
-
-SRCS = main.c
-
+SRCS = main.c chip8.c
 OBJS = $(SRCS:.c=.o)
 
 # Default target
