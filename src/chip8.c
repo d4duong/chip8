@@ -4,42 +4,11 @@
 
 #include <SDL2/SDL.h>
 
-// Define constants
+#include "chip8.h"
 
-
-// Declare global variables (registers, memory, stack, etc.)
-
-
-// SDL variables for handling graphics and input
-
-// Function prototypes
-bool initialise_SDL(void);
-
-int main(int argc, char *argv[]) {
-    // Initialise SDL
-    initialise_SDL();
-
-    // Initialise CHIP-8 system
-
-    while (1) {
-        // Fetch opcode
-
-        // Decode and execute opcode
-
-        // Update timers
-
-        // Render graphics
-
-        // Handle input
-
-        // Repeat the main loop
-    }
-
-    return 0;
-}
 
 // Function definitions
-bool initialise_SDL(void) {
+bool initialise_SDL(display *sdl) {
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER) != 0) {
         SDL_Log("SDL initialisation failed: %s\n", SDL_GetError());
         return false;
@@ -47,30 +16,28 @@ bool initialise_SDL(void) {
     return true;
 }
 
-
-// Function definitions
-void initialize_chip8() {
+void initialise_chip8(chip8 *c8) {
     // Initialize registers, memory, screen, stack, etc.
 }
 
-void load_rom(const char *filename) {
+void load_rom(chip8 *c8, const char *filename) {
     // Load the ROM file into memory starting at address 0x200
 }
 
-void emulate_cycle() {
+void emulate_cycle(chip8 *c8) {
     // Fetch, decode, and execute one opcode
     // Update program counter (pc) and other registers accordingly
 }
 
-void execute_opcode(uint16_t opcode) {
+void execute_opcode(chip8 *c8, uint16_t opcode) {
     // Decode and execute the fetched opcode
 }
 
-void update_timers() {
+void update_timers(chip8 *c8) {
     // Decrement the delay and sound timers if they are non-zero
 }
 
-void draw_screen(SDL_Renderer *renderer) {
+void draw_screen(chip8 *c8) {
     // Draw the screen buffer to the SDL window
 }
 
@@ -79,6 +46,10 @@ void handle_input(SDL_Event *event) {
 }
 
 void cleanup() {
-    // Free resources and shut down SDL
+    // Declare and initialize the 'window' variable
+    SDL_Window *window = SDL_GetWindowFromID(0);
+    // Destroy the SDL window and quit SDL
+    SDL_DestroyWindow(window);
+    // Shut down intialised SDL subsystems
     SDL_Quit();
 }
